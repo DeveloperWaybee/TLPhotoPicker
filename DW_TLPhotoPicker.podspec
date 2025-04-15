@@ -7,8 +7,8 @@
 #
 
 Pod::Spec.new do |s|
-  s.name             = 'TLPhotoPicker'
-  s.version          = '2.1.10'
+  s.name             = 'DW_TLPhotoPicker'
+  s.version          = '1.0.0'
   s.summary          = 'multiple phassets picker for iOS lib. like facebook'
 
 # This description is used to generate tags and improve search results.
@@ -17,15 +17,13 @@ Pod::Spec.new do |s|
 #   * Write the description between the DESC delimiters below.
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
-  s.description      = <<-DESC
-TODO: Add long description of the pod here.
-                       DESC
+  s.description      = 'Multiple image/video assets picker for iOS lib, like facebook. It is a simple and easy-to-use library that allows you to select multiple images and videos from the photo library. It supports both image and video selection, and provides a customizable UI for selecting assets. The library is built using Swift and is compatible with iOS 9.1 and above.'
 
-  s.homepage         = 'https://github.com/tilltue/TLPhotoPicker'
+  s.homepage         = 'https://github.com/DeveloperWaybee/TLPhotoPicker'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'wade.hawk' => 'junhyi.park@gmail.com' }
-  s.source           = { :git => 'https://github.com/tilltue/TLPhotoPicker.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/DeveloperWaybee/TLPhotoPicker.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '9.1'
