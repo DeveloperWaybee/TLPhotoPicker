@@ -9,14 +9,14 @@
 import UIKit
 import Photos
 
-protocol TLPhotoLibraryDelegate: AnyObject {
-    func loadCameraRollCollection(collection: TLAssetsCollection)
-    func loadCompleteAllCollection(collections: [TLAssetsCollection])
+protocol DW_TLPhotoLibraryDelegate: AnyObject {
+    func loadCameraRollCollection(collection: DW_TLAssetsCollection)
+    func loadCompleteAllCollection(collections: [DW_TLAssetsCollection])
 }
 
-class TLPhotoLibrary {
+class DW_TLPhotoLibrary {
     
-    weak var delegate: TLPhotoLibraryDelegate? = nil
+    weak var delegate: DW_TLPhotoLibraryDelegate? = nil
     
     lazy var imageManager: PHCachingImageManager = {
         return PHCachingImageManager()
@@ -26,7 +26,7 @@ class TLPhotoLibrary {
     internal var albums: PHFetchResult<PHCollection>? = nil
     
     deinit {
-        //        print("deinit TLPhotoLibrary")
+        //        print("deinit DW_TLPhotoLibrary")
     }
     
     @discardableResult
@@ -132,8 +132,8 @@ extension PHFetchOptions {
 }
 
 //MARK: - Load Collection
-extension TLPhotoLibrary {
-    func getOption(configure: TLPhotosPickerConfigure) -> PHFetchOptions {
+extension DW_TLPhotoLibrary {
+    func getOption(configure: DW_TLPhotosPickerConfigure) -> PHFetchOptions {
         let options: PHFetchOptions
         if let fetchOption = configure.fetchOption {
             options = fetchOption
@@ -160,20 +160,20 @@ extension TLPhotoLibrary {
         return options
     }
     
-    func fetchResult(collection: TLAssetsCollection?, configure: TLPhotosPickerConfigure) -> PHFetchResult<PHAsset>? {
+    func fetchResult(collection: DW_TLAssetsCollection?, configure: DW_TLPhotosPickerConfigure) -> PHFetchResult<PHAsset>? {
         guard let phAssetCollection = collection?.phAssetCollection else { return nil }
         let options = getOption(configure: configure)
         return PHAsset.fetchAssets(in: phAssetCollection, options: options)
     }
     
-    func fetchCollection(configure: TLPhotosPickerConfigure) {
+    func fetchCollection(configure: DW_TLPhotosPickerConfigure) {
         self.albums = nil
         self.assetCollections = []
         let useCameraButton = configure.usedCameraButton
         let options = getOption(configure: configure)
         let fetchCollectionOption = configure.fetchCollectionOption
         
-        func getAlbum(subType: PHAssetCollectionSubtype, result: inout [TLAssetsCollection]) {
+        func getAlbum(subType: PHAssetCollectionSubtype, result: inout [DW_TLAssetsCollection]) {
             let collectionOption = fetchCollectionOption[.assetCollections(.album)]
             let fetchCollection = PHAssetCollection.fetchAssetCollections(with: .album,
                                                                           subtype: subType,
@@ -188,7 +188,7 @@ extension TLPhotoLibrary {
             }
             for collection in collections {
                 if !result.contains(where: { $0.localIdentifier == collection.localIdentifier }) {
-                    var assetsCollection = TLAssetsCollection(collection: collection)
+                    var assetsCollection = DW_TLAssetsCollection(collection: collection)
                     assetsCollection.title = configure.customLocalizedTitle[assetsCollection.title] ?? assetsCollection.title
                     assetsCollection.fetchResult = PHAsset.fetchAssets(in: collection, options: options)
                     if assetsCollection.count > 0 {
@@ -201,8 +201,8 @@ extension TLPhotoLibrary {
         @discardableResult
         func getSmartAlbum(subType: PHAssetCollectionSubtype,
                            useCameraButton: Bool = false,
-                           result: inout [TLAssetsCollection])
-            -> TLAssetsCollection?
+                           result: inout [DW_TLAssetsCollection])
+            -> DW_TLAssetsCollection?
         {
             let collectionOption = fetchCollectionOption[.assetCollections(.smartAlbum)]
             let fetchCollection = PHAssetCollection.fetchAssetCollections(with: .smartAlbum,
@@ -213,7 +213,7 @@ extension TLPhotoLibrary {
                 let collection = fetchCollection.firstObject,
                 result.contains(where: { $0.localIdentifier == collection.localIdentifier }) == false
             {
-                var assetsCollection = TLAssetsCollection(collection: collection)
+                var assetsCollection = DW_TLAssetsCollection(collection: collection)
                 assetsCollection.title = configure.customLocalizedTitle[assetsCollection.title] ?? assetsCollection.title
                 assetsCollection.fetchResult = PHAsset.fetchAssets(in: collection, options: options)
                 if assetsCollection.count > 0 || useCameraButton {
@@ -225,7 +225,7 @@ extension TLPhotoLibrary {
         }
         if let fetchCollectionTypes = configure.fetchCollectionTypes {
             DispatchQueue.global(qos: .userInteractive).async { [weak self] in
-                var assetCollections = [TLAssetsCollection]()
+                var assetCollections = [DW_TLAssetsCollection]()
                 for (type,subType) in fetchCollectionTypes {
                     if type == .smartAlbum {
                         getSmartAlbum(subType: subType, result: &assetCollections)
@@ -239,7 +239,7 @@ extension TLPhotoLibrary {
             }
         }else {
             DispatchQueue.global(qos: .userInteractive).async { [weak self] in
-                var assetCollections = [TLAssetsCollection]()
+                var assetCollections = [DW_TLAssetsCollection]()
                 
                 //Recents
                 let recentsCollection = getSmartAlbum(subType: .smartAlbumUserLibrary,
@@ -275,7 +275,7 @@ extension TLPhotoLibrary {
                 self?.albums = albumsResult
                 albumsResult.enumerateObjects({ (collection, index, stop) -> Void in
                     guard let collection = collection as? PHAssetCollection else { return }
-                    var assetsCollection = TLAssetsCollection(collection: collection)
+                    var assetsCollection = DW_TLAssetsCollection(collection: collection)
                     assetsCollection.title = configure.customLocalizedTitle[assetsCollection.title] ?? assetsCollection.title
                     assetsCollection.fetchResult = PHAsset.fetchAssets(in: collection, options: options)
                     if assetsCollection.count > 0, !assetCollections.contains(where: { $0.localIdentifier == collection.localIdentifier }) {

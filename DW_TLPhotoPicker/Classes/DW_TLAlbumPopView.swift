@@ -1,6 +1,6 @@
 //
-//  TLAlbumPopView.swift
-//  TLPhotosPicker
+//  DW_TLAlbumPopView.swift
+//  DW_TLPhotosPicker
 //
 //  Created by wade.hawk on 2017. 4. 19..
 //  Copyright © 2017년 wade.hawk. All rights reserved.
@@ -54,7 +54,7 @@ extension PopupViewProtocol where Self: UIView {
     }
 }
 
-open class TLAlbumPopView: UIView, PopupViewProtocol {
+open class DW_TLAlbumPopView: UIView, PopupViewProtocol {
     @IBOutlet open var bgView: UIView!
     @IBOutlet open var popupView: UIView!
     @IBOutlet var popupViewHeight: NSLayoutConstraint!
@@ -71,7 +71,7 @@ open class TLAlbumPopView: UIView, PopupViewProtocol {
         self.popupView.layer.cornerRadius = 5.0
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapBgView))
         self.bgView.addGestureRecognizer(tapGesture)
-        self.tableView.register(UINib(nibName: "TLCollectionTableViewCell", bundle: TLBundle.bundle()), forCellReuseIdentifier: "TLCollectionTableViewCell")
+        self.tableView.register(UINib(nibName: "DW_TLCollectionTableViewCell", bundle: DW_TLBundle.bundle()), forCellReuseIdentifier: "DW_TLCollectionTableViewCell")
         if #available(iOS 13.0, *) {
             self.popupView.backgroundColor = .systemBackground
         }

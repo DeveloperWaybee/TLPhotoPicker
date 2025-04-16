@@ -4,30 +4,30 @@
 import PackageDescription
 
 let package = Package(
-    name: "TLPhotoPicker",
+    name: "DW_TLPhotoPicker",
     platforms: [
         .iOS(.v10)
     ],
     products: [
         // Products define the executables and libraries produced by a package, and make them visible to other packages.
         .library(
-            name: "TLPhotoPicker",
-            targets: ["TLPhotoPicker"]
+            name: "DW_TLPhotoPicker",
+            targets: ["DW_TLPhotoPicker"]
         ),
     ],
     targets: [
         .target(
-            name: "TLPhotoPicker",
-            path: "TLPhotoPicker",
+            name: "DW_TLPhotoPicker",
+            path: "DW_TLPhotoPicker",
             exclude: [
-                "Classes/TLBundle.swift",
-                "TLPhotoPicker/Info.plist",
-                "TLPhotoPickerController.bundle"
+                "Classes/DW_TLBundle.swift",
+                "DW_TLPhotoPicker/Info.plist",
+                "DW_TLPhotoPickerController.bundle"
             ],
             resources: [
-                .process("Classes/TLCollectionTableViewCell.xib"),
-                .process("Classes/TLPhotoCollectionViewCell.xib"),
-                .process("Classes/TLPhotosPickerViewController.xib"),
+                .process("Classes/DW_TLCollectionTableViewCell.xib"),
+                .process("Classes/DW_TLPhotoCollectionViewCell.xib"),
+                .process("Classes/DW_TLPhotosPickerViewController.xib"),
                 .process("Assets.xcassets")
             ]
         )

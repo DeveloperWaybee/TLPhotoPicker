@@ -1,6 +1,6 @@
 //
-//  TLPhotoCollectionViewCell.swift
-//  TLPhotosPicker
+//  DW_TLPhotoCollectionViewCell.swift
+//  DW_TLPhotosPicker
 //
 //  Created by wade.hawk on 2017. 5. 3..
 //  Copyright © 2017년 wade.hawk. All rights reserved.
@@ -9,7 +9,7 @@
 import UIKit
 import PhotosUI
 
-open class TLPlayerView: UIView {
+open class DW_TLPlayerView: UIView {
     @objc open var player: AVPlayer? {
         get {
             return playerLayer.player
@@ -29,10 +29,10 @@ open class TLPlayerView: UIView {
     }
 }
 
-open class TLPhotoCollectionViewCell: UICollectionViewCell {
+open class DW_TLPhotoCollectionViewCell: UICollectionViewCell {
     private var observer: NSObjectProtocol?
     @IBOutlet open var imageView: UIImageView?
-    @IBOutlet open var playerView: TLPlayerView?
+    @IBOutlet open var playerView: DW_TLPlayerView?
     @IBOutlet open var livePhotoView: PHLivePhotoView?
     @IBOutlet open var liveBadgeImageView: UIImageView?
     @IBOutlet open var durationView: UIView?
@@ -44,7 +44,7 @@ open class TLPhotoCollectionViewCell: UICollectionViewCell {
     @IBOutlet open var orderLabel: UILabel?
     @IBOutlet open var orderBgView: UIView?
     
-    var configure = TLPhotosPickerConfigure() {
+    var configure = DW_TLPhotosPickerConfigure() {
         didSet {
             self.selectedView?.layer.borderColor = self.configure.selectedColor.cgColor
             self.orderBgView?.backgroundColor = self.configure.selectedColor

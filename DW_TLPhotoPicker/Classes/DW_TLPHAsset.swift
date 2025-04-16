@@ -1,17 +1,17 @@
 //
-//  TLAssetsCollection.swift
-//  TLPhotosPicker
+//  DW_TLPHAsset.swift
+//  DW_TLPhotoPicker
 //
-//  Created by wade.hawk on 2017. 4. 18..
-//  Copyright © 2017년 wade.hawk. All rights reserved.
+//  Created by Bhavneet Singh on 16/04/25.
 //
+
 
 import Foundation
 import Photos
 import PhotosUI
 import MobileCoreServices
 
-public struct TLPHAsset {
+public struct DW_TLPHAsset {
     enum CloudDownloadState {
         case ready, progress, complete, failed
     }
@@ -26,7 +26,7 @@ public struct TLPHAsset {
     
     var state = CloudDownloadState.ready
     public var phAsset: PHAsset? = nil
-    //Bool to check if TLPHAsset returned is created using camera.
+    //Bool to check if DW_TLPHAsset returned is created using camera.
     public var isSelectedFromCamera = false
     public var selectedOrder: Int = 0
     public var type: AssetType {
@@ -45,7 +45,7 @@ public struct TLPHAsset {
     public var fullResolutionImage: UIImage? {
         get {
             guard let phAsset = self.phAsset else { return nil }
-            return TLPhotoLibrary.fullResolutionImageData(asset: phAsset)
+            return DW_TLPhotoLibrary.fullResolutionImageData(asset: phAsset)
         }
     }
     
@@ -61,7 +61,7 @@ public struct TLPHAsset {
     @discardableResult
     public func cloudImageDownload(progressBlock: @escaping (Double) -> Void, completionBlock:@escaping (UIImage?)-> Void ) -> PHImageRequestID? {
         guard let phAsset = self.phAsset else { return nil }
-        return TLPhotoLibrary.cloudImageDownload(asset: phAsset, progressBlock: progressBlock, completionBlock: completionBlock)
+        return DW_TLPhotoLibrary.cloudImageDownload(asset: phAsset, progressBlock: progressBlock, completionBlock: completionBlock)
     }
     
     public var originalFileName: String? {
@@ -325,111 +325,8 @@ public struct TLPHAsset {
         self.phAsset = asset
     }
 
-    public static func asset(with localIdentifier: String) -> TLPHAsset? {
+    public static func asset(with localIdentifier: String) -> DW_TLPHAsset? {
         let fetchResult = PHAsset.fetchAssets(withLocalIdentifiers: [localIdentifier], options: nil)
-        return TLPHAsset(asset: fetchResult.firstObject)
-    }
-}
-
-extension TLPHAsset: Equatable {
-    public static func ==(lhs: TLPHAsset, rhs: TLPHAsset) -> Bool {
-        guard let lphAsset = lhs.phAsset, let rphAsset = rhs.phAsset else { return false }
-        return lphAsset.localIdentifier == rphAsset.localIdentifier
-    }
-}
-
-extension Array {
-    subscript (safe index: Int) -> Element? {
-        return indices ~= index ? self[index] : nil
-    }
-}
-
-public struct TLAssetsCollection {
-    var phAssetCollection: PHAssetCollection? = nil
-    var fetchResult: PHFetchResult<PHAsset>? = nil
-    var useCameraButton: Bool = false
-    var recentPosition: CGPoint = CGPoint.zero
-    var title: String
-    var localIdentifier: String
-    public var sections: [(title: String, assets: [TLPHAsset])]? = nil
-    var count: Int {
-        get {
-            guard let count = self.fetchResult?.count, count > 0 else { return self.useCameraButton ? 1 : 0 }
-            return count + (self.useCameraButton ? 1 : 0)
-        }
-    }
-    var assetCount: Int {
-        get {
-            return self.fetchResult?.count ?? 0
-        }
-    }
-    
-    init(collection: PHAssetCollection) {
-        self.phAssetCollection = collection
-        self.title = collection.localizedTitle ?? ""
-        self.localIdentifier = collection.localIdentifier
-    }
-    
-    func getAsset(at index: Int) -> PHAsset? {
-        if self.useCameraButton && index == 0 { return nil }
-        let index = index - (self.useCameraButton ? 1 : 0)
-        guard let result = self.fetchResult, index < result.count else { return nil }
-        return result.object(at: max(index,0))
-    }
-    
-    func getTLAsset(at indexPath: IndexPath) -> TLPHAsset? {
-        let isCameraRow = self.useCameraButton && indexPath.section == 0 && indexPath.row == 0
-        if isCameraRow {
-            return nil
-        }
-        if let sections = self.sections {
-            let index = indexPath.row - ((self.useCameraButton && indexPath.section == 0) ? 1 : 0)
-            let result = sections[safe: indexPath.section]
-            return result?.assets[safe: index]
-        }else {
-            var index = indexPath.row
-            index = index - (self.useCameraButton ? 1 : 0)
-            guard let result = self.fetchResult, index < result.count else { return nil }
-            return TLPHAsset(asset: result.object(at: max(index,0)))
-        }
-    }
-    
-    func findIndex(phAsset: PHAsset) -> IndexPath? {
-        guard let sections = self.sections else {
-            return nil
-        }
-        for (offset, section) in sections.enumerated() {
-            if let index = section.assets.firstIndex(where: { $0.phAsset == phAsset }) {
-                return IndexPath(row: index, section: offset)
-            }
-        }
-        return nil
-    }
-    
-    mutating func reloadSection(groupedBy: PHFetchedResultGroupedBy) {
-        var groupedSections = self.section(groupedBy: groupedBy)
-        if self.useCameraButton {
-            groupedSections.insert(("camera",[TLPHAsset(asset: nil)]), at: 0)
-        }
-        self.sections = groupedSections
-    }
-    
-    static func ==(lhs: TLAssetsCollection, rhs: TLAssetsCollection) -> Bool {
-        return lhs.localIdentifier == rhs.localIdentifier
-    }
-}
-
-extension UIImage {
-    func upOrientationImage() -> UIImage? {
-        switch imageOrientation {
-        case .up:
-            return self
-        default:
-            UIGraphicsBeginImageContextWithOptions(size, false, scale)
-            draw(in: CGRect(origin: .zero, size: size))
-            let result = UIGraphicsGetImageFromCurrentImageContext()
-            UIGraphicsEndImageContext()
-            return result
-        }
+        return DW_TLPHAsset(asset: fetchResult.firstObject)
     }
 }

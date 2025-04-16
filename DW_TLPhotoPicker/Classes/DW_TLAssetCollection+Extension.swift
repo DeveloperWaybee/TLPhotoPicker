@@ -1,6 +1,6 @@
 //
-//  TLAssetCollection+Extension.swift
-//  TLPhotoPicker
+//  DW_TLAssetCollection+Extension.swift
+//  DW_TLPhotoPicker
 //
 //  Created by wade.hawk on 21/01/2019.
 //
@@ -33,8 +33,8 @@ public enum PHFetchedResultGroupedBy {
     }
 }
 
-extension TLAssetsCollection {
-    func enumarateFetchResult(groupedBy: PHFetchedResultGroupedBy) -> Dictionary<String,[TLPHAsset]> {
+extension DW_TLAssetsCollection {
+    func enumarateFetchResult(groupedBy: PHFetchedResultGroupedBy) -> Dictionary<String,[DW_TLPHAsset]> {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = groupedBy.dateFormat
         var assets = [PHAsset]()
@@ -44,7 +44,7 @@ extension TLAssetsCollection {
                 assets.append(phAsset)
             }
         })
-        let sections = Dictionary(grouping: assets.map{ TLPHAsset(asset: $0) }) { (element) -> String in
+        let sections = Dictionary(grouping: assets.map{ DW_TLPHAsset(asset: $0) }) { (element) -> String in
             if let creationDate = element.phAsset?.creationDate {
                 let identifier = dateFormatter.string(from: creationDate)
                 return identifier
@@ -54,9 +54,9 @@ extension TLAssetsCollection {
         return sections
     }
 
-    func section(groupedBy: PHFetchedResultGroupedBy) -> [(String,[TLPHAsset])] {
+    func section(groupedBy: PHFetchedResultGroupedBy) -> [(String,[DW_TLPHAsset])] {
         let dict = enumarateFetchResult(groupedBy: groupedBy)
-        var sections = [(String,[TLPHAsset])]()
+        var sections = [(String,[DW_TLPHAsset])]()
         let sortedKeys = dict.keys.sorted(by: >)
         for key in sortedKeys {
             if let array = dict[key] {

@@ -2,7 +2,7 @@ import UIKit
 import Photos
 import PhotosUI
 
-open class TLAssetPreviewViewController: UIViewController {
+open class DW_TLAssetPreviewViewController: UIViewController {
     
     fileprivate var player: AVPlayer?
     fileprivate var playerLayer: AVPlayerLayer?
@@ -56,7 +56,19 @@ open class TLAssetPreviewViewController: UIViewController {
     }
 }
 
-private extension TLAssetPreviewViewController {
+
+
+private extension UIColor {
+    static var previewBackground: UIColor {
+        if #available(iOS 13.0, *) {
+            return .systemBackground
+        } else {
+            return .white
+        }
+    }
+}
+
+private extension DW_TLAssetPreviewViewController {
     func setupViews() {
         view.backgroundColor = .previewBackground
         view.addAligned(imageView)
@@ -166,16 +178,6 @@ private extension TLAssetPreviewViewController {
     func previewPhoto(from asset: PHAsset) {
         imageView.isHidden = false
         fetchImage(for: asset, canHandleDegraded: false, completion: { self.imageView.image = $0 })
-    }
-}
-
-private extension UIColor {
-    static var previewBackground: UIColor {
-        if #available(iOS 13.0, *) {
-            return .systemBackground
-        } else {
-            return .white
-        }
     }
 }
 

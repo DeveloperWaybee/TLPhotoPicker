@@ -1,5 +1,5 @@
 #
-# Be sure to run `pod lib lint TLPhotoPicker.podspec' to ensure this is a
+# Be sure to run `pod lib lint DW_TLPhotoPicker.podspec' to ensure this is a
 # valid spec before submitting.
 #
 # Any lines starting with a # are optional, but their use is encouraged
@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'DW_TLPhotoPicker'
-  s.version          = '1.0.0'
+  s.version          = '1.0.1'
   s.summary          = 'multiple phassets picker for iOS lib. like facebook'
 
 # This description is used to generate tags and improve search results.
@@ -22,7 +22,7 @@ Pod::Spec.new do |s|
   s.homepage         = 'https://github.com/DeveloperWaybee/TLPhotoPicker'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'wade.hawk' => 'junhyi.park@gmail.com' }
+  s.author           = { 'DeveloperWaybee' => 'developer@waybeetech.com' }
   s.source           = { :git => 'https://github.com/DeveloperWaybee/TLPhotoPicker.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
@@ -30,10 +30,10 @@ Pod::Spec.new do |s|
   s.swift_version = '5.0'
   s.pod_target_xcconfig = { 'SWIFT_VERSION' => '5.0' }
 
-  s.source_files = 'TLPhotoPicker/Classes/**/*.swift'
+  s.source_files = 'DW_TLPhotoPicker/Classes/**/*.swift'
   
-  s.resource_bundles = { 'TLPhotoPicker' => ['TLPhotoPicker/Classes/*.xib'] }
-  s.resources = 'TLPhotoPicker/TLPhotoPickerController.bundle'
+  s.resource_bundles = { 'DW_TLPhotoPicker' => ['DW_TLPhotoPicker/Classes/*.xib'] }
+  s.resources = 'DW_TLPhotoPicker/DW_TLPhotoPickerController.bundle'
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'

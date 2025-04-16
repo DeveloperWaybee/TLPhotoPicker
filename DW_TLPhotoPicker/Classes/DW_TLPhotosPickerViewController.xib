@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
-        <capability name="Image references" minToolsVersion="11.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TLPhotosPickerViewController" customModule="TLPhotoPicker">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DW_TLPhotosPickerViewController" customModule="DW_TLPhotoPicker">
             <connections>
                 <outlet property="albumPopView" destination="Jcn-hC-Umh" id="c3n-m9-wfd"/>
                 <outlet property="cancelButton" destination="sqJ-Z7-zxj" id="J6u-hz-ePK"/>
@@ -44,7 +44,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X8O-Gg-slz">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                    <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                     <items>
                         <navigationItem id="5CU-MZ-p1K">
                             <nil key="title"/>
@@ -104,7 +104,7 @@
                     </items>
                 </navigationBar>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="4gR-Bn-quP">
-                    <rect key="frame" x="0.0" y="44" width="375" height="623"/>
+                    <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="VDa-Pp-VBq">
                         <size key="itemSize" width="50" height="50"/>
@@ -118,10 +118,10 @@
                     </connections>
                 </collectionView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HPm-Vc-F86">
-                    <rect key="frame" x="0.0" y="44" width="375" height="623"/>
+                    <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="gi6-Sw-3Zf">
-                            <rect key="frame" x="137.5" y="249" width="100" height="125.5"/>
+                            <rect key="frame" x="137.5" y="239" width="100" height="125.5"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YDZ-o1-AXT">
                                     <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
@@ -148,11 +148,11 @@
                 <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="AEv-G6-dRI">
                     <rect key="frame" x="177.5" y="323.5" width="20" height="20"/>
                 </activityIndicatorView>
-                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jcn-hC-Umh" customClass="TLAlbumPopView" customModule="TLPhotoPicker">
-                    <rect key="frame" x="0.0" y="44" width="375" height="623"/>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jcn-hC-Umh" customClass="DW_TLAlbumPopView" customModule="DW_TLPhotoPicker" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GKD-We-AdT">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
                         </view>
                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eL2-gJ-b87">
@@ -225,8 +225,6 @@
         </view>
     </objects>
     <resources>
-        <image name="arrow.png" width="18" height="18"/>
         <image name="photo" catalog="system" width="128" height="93"/>
-        <image name="pop_arrow.png" width="41" height="20"/>
     </resources>
 </document>

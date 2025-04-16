@@ -1,6 +1,6 @@
 //
 //  SynchronizedDictionary.swift
-//  TLPhotoPicker
+//  DW_TLPhotoPicker
 //
 //  Created by wade.hawk on 30/03/2019.
 //
