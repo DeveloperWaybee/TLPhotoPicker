@@ -1,5 +1,5 @@
 //
-//  TLBundle+SPM.swift
+//  DW_TLBundle+SPM.swift
 //  
 //
 //  Created by wade.hawk on 2020/09/20.
@@ -9,7 +9,7 @@ import Foundation
 
 import UIKit
 
-open class TLBundle {
+open class DW_TLBundle {
     open class func podBundleImage(named: String) -> UIImage? {
         return UIImage(named: named, in: .module, compatibleWith: nil)
     }
