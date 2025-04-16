@@ -1,0 +1,6 @@
+framework module DW_TLPhotoPicker {
+  umbrella header "DW_TLPhotoPicker-umbrella.h"
+
+  export *
+  module * { export * }
+}

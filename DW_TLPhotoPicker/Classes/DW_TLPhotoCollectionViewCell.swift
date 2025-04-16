@@ -150,7 +150,7 @@ open class DW_TLPhotoCollectionViewCell: UICollectionViewCell {
     }
     
     deinit {
-//        print("deinit TLPhotoCollectionViewCell")
+//        print("deinit DW_TLPhotoCollectionViewCell")
     }
     
     override open func awakeFromNib() {

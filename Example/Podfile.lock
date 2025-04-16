@@ -1,0 +1,16 @@
+PODS:
+  - DW_TLPhotoPicker (1.0.4)
+
+DEPENDENCIES:
+  - DW_TLPhotoPicker (from `../`)
+
+EXTERNAL SOURCES:
+  DW_TLPhotoPicker:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  DW_TLPhotoPicker: 2252bf3cc1c58c60a83d3db37d899e4fb663d75a
+
+PODFILE CHECKSUM: dbbb2a99de9b7460e72141cadf4edfa29aa83d00
+
+COCOAPODS: 1.16.2

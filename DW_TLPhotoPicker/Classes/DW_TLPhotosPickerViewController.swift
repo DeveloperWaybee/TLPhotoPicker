@@ -1000,6 +1000,7 @@ extension DW_TLPhotosPickerViewController: UICollectionViewDelegate,UICollection
     
     //Datasource
     open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        print(indexPath)
         func makeCell(nibName: String) -> DW_TLPhotoCollectionViewCell {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: nibName, for: indexPath) as! DW_TLPhotoCollectionViewCell
             cell.configure = self.configure
